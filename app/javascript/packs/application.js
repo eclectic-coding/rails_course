@@ -14,3 +14,4 @@ ActiveStorage.start()
 import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
 import "../stylesheets/application.scss"
+import "@fortawesome/fontawesome-free/js/all"
