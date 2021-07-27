@@ -13,6 +13,11 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+    if params[:title]
+      @courses = Course.where("title ILIKE ?", "%#{params[:title]}%") # case-insensitive
+    else
+      @course = Course.new
+    end
   end
 
   # GET /courses/1/edit
@@ -58,13 +63,14 @@ class CoursesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def course_params
-      params.require(:course).permit(:title, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_course
+    @course = Course.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def course_params
+    params.require(:course).permit(:title, :description)
+  end
 end
